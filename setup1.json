@@ -1,0 +1,1450 @@
+{
+     "version": "1.1",
+     "topology": {
+          "name": "2_spine_6_leafs_virtual_testbed-1",
+          "description": "Leaf-spine topology",
+           "fabric_type": "L3_BGP",
+           "nodes": [
+               {
+                    "id": "Spine-1",
+                    "name": "v-t1-spine-1",
+                   "mgmt_ip_address": "10.174.18.16",
+                  	"mgmt_interface_name": "mgmt1/1/1",
+                   "role": "SPINE",
+                    "credential": {
+                         "username": "admin",
+                         "password": "admin"
+                    },
+                    "ports": [
+            {
+            "id": "s1-Port1",
+            "name": "ethernet1/1/1",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "s1-Port2",
+            "name": "ethernet1/1/2",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "s1-Port3",
+            "name": "ethernet1/1/3",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "s1-Port4",
+            "name": "ethernet1/1/4",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "s1-Port5",
+            "name": "ethernet1/1/5",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+                  {
+            "id": "s1-Port6",
+            "name": "ethernet1/1/6",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "s1-Port7",
+            "name": "ethernet1/1/7",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "s1-Port8",
+            "name": "ethernet1/1/8",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "s1-Port9",
+            "name": "ethernet1/1/9",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "s1-Port10",
+            "name": "ethernet1/1/10",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "s1-Port11",
+            "name": "ethernet1/1/11",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "s1-Port12",
+            "name": "ethernet1/1/12",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "s1-Port13",
+            "name": "ethernet1/1/13",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s1-Port14",
+            "name": "ethernet1/1/14",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s1-Port15",
+            "name": "ethernet1/1/15",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s1-Port16",
+            "name": "ethernet1/1/16",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s1-Port17",
+            "name": "ethernet1/1/17",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s1-Port18",
+            "name": "ethernet1/1/18",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s1-Port19-1",
+            "name": "ethernet1/1/19",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s1-Port20-1",
+            "name": "ethernet1/1/20",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s1-Port21-1",
+            "name": "ethernet1/1/21",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s1-Port22-1",
+            "name": "ethernet1/1/22",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s1-Port23-1",
+            "name": "ethernet1/1/23",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s1-Port24-1",
+            "name": "ethernet1/1/24",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s1-Port25",
+            "name": "ethernet1/1/25",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s1-Port26",
+            "name": "ethernet1/1/26",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s1-Port27",
+            "name": "ethernet1/1/27",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s1-Port28",
+            "name": "ethernet1/1/28",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s1-Port29",
+            "name": "ethernet1/1/29",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s1-Port30",
+            "name": "ethernet1/1/30",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s1-Port31",
+            "name": "ethernet1/1/31",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s1-Port32",
+            "name": "ethernet1/1/32",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          }
+                    ]
+               },
+               {
+                    "id": "Spine-2",
+                    "name": "v-t1-spine-2",
+                   "mgmt_ip_address": "10.174.18.17",
+                   "mgmt_interface_name": "mgmt1/1/1",
+                    "role": "SPINE",
+                    "credential": {
+                         "username": "admin",
+                         "password": "admin"
+                    },
+                    "ports": [
+            {
+            "id": "s2-Port1",
+            "name": "ethernet1/1/1",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "s2-Port2",
+            "name": "ethernet1/1/2",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "s2-Port3",
+            "name": "ethernet1/1/3",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "s2-Port4",
+            "name": "ethernet1/1/4",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "s2-Port5",
+            "name": "ethernet1/1/5",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+                  {
+            "id": "s2-Port6",
+            "name": "ethernet1/1/6",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "s2-Port7",
+            "name": "ethernet1/1/7",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "s2-Port8",
+            "name": "ethernet1/1/8",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "s2-Port9",
+            "name": "ethernet1/1/9",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "s2-Port10",
+            "name": "ethernet1/1/10",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "s2-Port11",
+            "name": "ethernet1/1/11",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "s2-Port12",
+            "name": "ethernet1/1/12",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "s2-Port13",
+            "name": "ethernet1/1/13",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "s2-Port14",
+            "name": "ethernet1/1/14",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s2-Port15",
+            "name": "ethernet1/1/15",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s2-Port16",
+            "name": "ethernet1/1/16",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s2-Port17",
+            "name": "ethernet1/1/17",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s2-Port18",
+            "name": "ethernet1/1/18",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s2-Port19-1",
+            "name": "ethernet1/1/19",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s2-Port20-1",
+            "name": "ethernet1/1/20",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s2-Port21-1",
+            "name": "ethernet1/1/21",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s2-Port22-1",
+            "name": "ethernet1/1/22",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s2-Port23-1",
+            "name": "ethernet1/1/23",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s2-Port24-1",
+            "name": "ethernet1/1/24",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s2-Port25",
+            "name": "ethernet1/1/25",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s2-Port26",
+            "name": "ethernet1/1/26",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s2-Port27",
+            "name": "ethernet1/1/27",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s2-Port28",
+            "name": "ethernet1/1/28",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s2-Port29",
+            "name": "ethernet1/1/29",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s2-Port30",
+            "name": "ethernet1/1/30",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s2-Port31",
+            "name": "ethernet1/1/31",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "s2-Port32",
+            "name": "ethernet1/1/32",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          }
+
+
+                    ]
+               },
+               {
+                    "id": "Leaf-1",
+                    "name": "v-t1-leaf-1",
+                   "mgmt_ip_address": "10.174.18.18",
+                   "mgmt_interface_name": "mgmt1/1/1",
+                    "role": "LEAF",
+                    "credential": {
+                         "username": "admin",
+                         "password": "admin"
+                    },
+                    "ports": [
+        {
+            "id": "l1-Port1",
+            "name": "ethernet1/1/1",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "l1-Port2",
+            "name": "ethernet1/1/2",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "l1-Port3",
+            "name": "ethernet1/1/3",
+            "port_type": "ETHERNET",
+            "link_type": "VLTLINK"
+          },
+          {
+            "id": "l1-Port4",
+            "name": "ethernet1/1/4",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l1-Port5",
+            "name": "ethernet1/1/5",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+                  {
+            "id": "l1-Port6",
+            "name": "ethernet1/1/6",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l1-Port7",
+            "name": "ethernet1/1/7",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l1-Port8",
+            "name": "ethernet1/1/8",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "l1-Port9",
+            "name": "ethernet1/1/9",
+            "port_type": "ETHERNET",
+            "link_type": "VLTLINK"
+          },
+          {
+            "id": "l1-Port10",
+            "name": "ethernet1/1/10",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l1-Port11",
+            "name": "ethernet1/1/11",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l1-Port12",
+            "name": "ethernet1/1/12",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l1-Port13",
+            "name": "ethernet1/1/13",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l1-Port14",
+            "name": "ethernet1/1/14",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l1-Port15",
+            "name": "ethernet1/1/15",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l1-Port16",
+            "name": "ethernet1/1/16",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l1-Port17",
+            "name": "ethernet1/1/17",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l1-Port18",
+            "name": "ethernet1/1/18",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l1-Port19-1",
+            "name": "ethernet1/1/19",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l1-Port20-1",
+            "name": "ethernet1/1/20",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l1-Port21-1",
+            "name": "ethernet1/1/21",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l1-Port22-1",
+            "name": "ethernet1/1/22",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l1-Port23-1",
+            "name": "ethernet1/1/23",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l1-Port24-1",
+            "name": "ethernet1/1/24",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l1-Port25",
+            "name": "ethernet1/1/25",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l1-Port26",
+            "name": "ethernet1/1/26",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l1-Port27",
+            "name": "ethernet1/1/27",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l1-Port28",
+            "name": "ethernet1/1/28",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l1-Port29",
+            "name": "ethernet1/1/29",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l1-Port30",
+            "name": "ethernet1/1/30",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l1-Port31",
+            "name": "ethernet1/1/31",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l1-Port32",
+            "name": "ethernet1/1/32",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          }
+                    ]
+               },
+               {
+                    "id": "Leaf-2",
+                    "name": "v-t1-leaf-2",
+                   "mgmt_ip_address": "10.174.18.19",
+                   "mgmt_interface_name": "mgmt1/1/1",
+                    "role": "LEAF",
+                    "credential": {
+                         "username": "admin",
+                         "password": "admin"
+                    },
+                    "ports": [
+                         {
+            "id": "l2-Port1",
+            "name": "ethernet1/1/1",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "l2-Port2",
+            "name": "ethernet1/1/2",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "l2-Port3",
+            "name": "ethernet1/1/3",
+            "port_type": "ETHERNET",
+            "link_type": "VLTLINK"
+          },
+          {
+            "id": "l2-Port4",
+            "name": "ethernet1/1/4",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l2-Port5",
+            "name": "ethernet1/1/5",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+                  {
+            "id": "l2-Port6",
+            "name": "ethernet1/1/6",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l2-Port7",
+            "name": "ethernet1/1/7",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l2-Port8",
+            "name": "ethernet1/1/8",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "l2-Port9",
+            "name": "ethernet1/1/9",
+            "port_type": "ETHERNET",
+            "link_type": "VLTLINK"
+          },
+          {
+            "id": "l2-Port10",
+            "name": "ethernet1/1/10",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l2-Port11",
+            "name": "ethernet1/1/11",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l2-Port12",
+            "name": "ethernet1/1/12",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l2-Port13",
+            "name": "ethernet1/1/13",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l2-Port14",
+            "name": "ethernet1/1/14",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l2-Port15",
+            "name": "ethernet1/1/15",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l2-Port16",
+            "name": "ethernet1/1/16",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l2-Port17",
+            "name": "ethernet1/1/17",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l2-Port18",
+            "name": "ethernet1/1/18",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l2-Port19-1",
+            "name": "ethernet1/1/19",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l2-Port20-1",
+            "name": "ethernet1/1/20",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l2-Port21-1",
+            "name": "ethernet1/1/21",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l2-Port22-1",
+            "name": "ethernet1/1/22",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l2-Port23-1",
+            "name": "ethernet1/1/23",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l2-Port24-1",
+            "name": "ethernet1/1/24",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l2-Port25",
+            "name": "ethernet1/1/25",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l2-Port26",
+            "name": "ethernet1/1/26",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l2-Port27",
+            "name": "ethernet1/1/27",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l2-Port28",
+            "name": "ethernet1/1/28",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l2-Port29",
+            "name": "ethernet1/1/29",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l2-Port30",
+            "name": "ethernet1/1/30",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l2-Port31",
+            "name": "ethernet1/1/31",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l2-Port32",
+            "name": "ethernet1/1/32",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          }
+                    ]
+               },
+               {
+                    "id": "Leaf-3",
+                    "name": "v-t1-leaf-3",
+                   "mgmt_ip_address": "10.174.18.20",
+                   "mgmt_interface_name": "mgmt1/1/1",
+                    "role": "LEAF",
+                    "credential": {
+                         "username": "admin",
+                         "password": "admin"
+                    },
+                    "ports": [
+                          {
+            "id": "l3-Port1",
+            "name": "ethernet1/1/1",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "l3-Port2",
+            "name": "ethernet1/1/2",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "l3-Port3",
+            "name": "ethernet1/1/3",
+            "port_type": "ETHERNET",
+            "link_type": "VLTLINK"
+          },
+          {
+            "id": "l3-Port4",
+            "name": "ethernet1/1/4",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l3-Port5",
+            "name": "ethernet1/1/5",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+                  {
+            "id": "l3-Port6",
+            "name": "ethernet1/1/6",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l3-Port7",
+            "name": "ethernet1/1/7",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l3-Port8",
+            "name": "ethernet1/1/8",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "l3-Port9",
+            "name": "ethernet1/1/9",
+            "port_type": "ETHERNET",
+            "link_type": "VLTLINK"
+          },
+          {
+            "id": "l3-Port10",
+            "name": "ethernet1/1/10",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l3-Port11",
+            "name": "ethernet1/1/11",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l3-Port12",
+            "name": "ethernet1/1/12",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l3-Port13",
+            "name": "ethernet1/1/13",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l3-Port14",
+            "name": "ethernet1/1/14",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l3-Port15",
+            "name": "ethernet1/1/15",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l3-Port16",
+            "name": "ethernet1/1/16",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l3-Port17",
+            "name": "ethernet1/1/17",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l3-Port18",
+            "name": "ethernet1/1/18",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l3-Port19-1",
+            "name": "ethernet1/1/19",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l3-Port20-1",
+            "name": "ethernet1/1/20",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l3-Port21-1",
+            "name": "ethernet1/1/21",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l3-Port22-1",
+            "name": "ethernet1/1/22",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l3-Port23-1",
+            "name": "ethernet1/1/23",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l3-Port24-1",
+            "name": "ethernet1/1/24",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l3-Port25",
+            "name": "ethernet1/1/25",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l3-Port26",
+            "name": "ethernet1/1/26",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l3-Port27",
+            "name": "ethernet1/1/27",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l3-Port28",
+            "name": "ethernet1/1/28",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l3-Port29",
+            "name": "ethernet1/1/29",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l3-Port30",
+            "name": "ethernet1/1/30",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l3-Port31",
+            "name": "ethernet1/1/31",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l3-Port32",
+            "name": "ethernet1/1/32",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          }
+                    ]
+               },
+               {
+                    "id": "Leaf-4",
+                    "name": "v-t1-leaf-4",
+                   "mgmt_ip_address": "10.174.18.21",
+                   "mgmt_interface_name": "mgmt1/1/1",
+                    "role": "LEAF",
+                    "credential": {
+                         "username": "admin",
+                         "password": "admin"
+                    },
+                    "ports": [
+                         {
+            "id": "l4-Port1",
+            "name": "ethernet1/1/1",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "l4-Port2",
+            "name": "ethernet1/1/2",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "l4-Port3",
+            "name": "ethernet1/1/3",
+            "port_type": "ETHERNET",
+            "link_type": "VLTLINK"
+          },
+          {
+            "id": "l4-Port4",
+            "name": "ethernet1/1/4",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l4-Port5",
+            "name": "ethernet1/1/5",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+                  {
+            "id": "l4-Port6",
+            "name": "ethernet1/1/6",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l4-Port7",
+            "name": "ethernet1/1/7",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l4-Port8",
+            "name": "ethernet1/1/8",
+            "port_type": "ETHERNET",
+            "link_type": "INTERLINK"
+          },
+          {
+            "id": "l4-Port9",
+            "name": "ethernet1/1/9",
+            "port_type": "ETHERNET",
+            "link_type": "VLTLINK"
+          },
+          {
+            "id": "l4-Port10",
+            "name": "ethernet1/1/10",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l4-Port11",
+            "name": "ethernet1/1/11",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l4-Port12",
+            "name": "ethernet1/1/12",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l4-Port13",
+            "name": "ethernet1/1/13",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l4-Port14",
+            "name": "ethernet1/1/14",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l4-Port15",
+            "name": "ethernet1/1/15",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l4-Port16",
+            "name": "ethernet1/1/16",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l4-Port17",
+            "name": "ethernet1/1/17",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l4-Port18",
+            "name": "ethernet1/1/18",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l4-Port19-1",
+            "name": "ethernet1/1/19",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l4-Port20-1",
+            "name": "ethernet1/1/20",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l4-Port21-1",
+            "name": "ethernet1/1/21",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l4-Port22-1",
+            "name": "ethernet1/1/22",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l4-Port23-1",
+            "name": "ethernet1/1/23",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l4-Port24-1",
+            "name": "ethernet1/1/24",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l4-Port25",
+            "name": "ethernet1/1/25",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l4-Port26",
+            "name": "ethernet1/1/26",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l4-Port27",
+            "name": "ethernet1/1/27",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l4-Port28",
+            "name": "ethernet1/1/28",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l4-Port29",
+            "name": "ethernet1/1/29",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l4-Port30",
+            "name": "ethernet1/1/30",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l4-Port31",
+            "name": "ethernet1/1/31",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          },
+          {
+            "id": "l4-Port32",
+            "name": "ethernet1/1/32",
+            "port_type": "ETHERNET",
+            "link_type": "HOSTLINK"
+          }
+
+                    ]
+               },
+               {
+                    "id": "Leaf-5",
+                    "name": "v-t1-edge-leaf-5",
+                   "mgmt_ip_address": "10.174.18.7",
+                   "mgmt_interface_name": "mgmt1/1/1",
+                    "role": "EDGE_LEAF",
+                    "credential": {
+                         "username": "admin",
+                         "password": "admin"
+                    },
+                    "ports": [
+                         {
+                              "id": "l5-Port1",
+                              "name": "ethernet1/1/1",
+                              "port_type": "ETHERNET",
+                              "link_type": "INTERLINK"
+                         },
+                         {
+                              "id": "l5-Port2",
+                              "name": "ethernet1/1/2",
+                              "port_type": "ETHERNET",
+                              "link_type": "INTERLINK"
+                         },
+                         {
+                              "id": "l5-Port3",
+                              "name": "ethernet1/1/3",
+                              "port_type": "ETHERNET",
+                              "link_type": "VLTLINK"
+                         },
+                         {
+                              "id": "l5-Port4",
+                              "name": "ethernet1/1/4",
+                              "port_type": "ETHERNET",
+                              "link_type": "EDGELINK"
+                         }
+                    ]
+               },
+               {
+                    "id": "Leaf-6",
+                    "name": "v-t1-edge-leaf-6",
+                   "mgmt_ip_address": "10.174.18.8",
+                   "mgmt_interface_name": "mgmt1/1/1",
+                    "role": "EDGE_LEAF",
+                    "credential": {
+                         "username": "admin",
+                         "password": "admin"
+                    },
+                    "ports": [
+                         {
+                              "id": "l6-Port1",
+                              "name": "ethernet1/1/1",
+                              "port_type": "ETHERNET",
+                              "link_type": "INTERLINK"
+                         },
+                         {
+                              "id": "l6-Port2",
+                              "name": "ethernet1/1/2",
+                              "port_type": "ETHERNET",
+                              "link_type": "INTERLINK"
+                         },
+                         {
+                              "id": "l6-Port3",
+                              "name": "ethernet1/1/3",
+                              "port_type": "ETHERNET",
+                              "link_type": "VLTLINK"
+                         },
+                         {
+                              "id": "l6-Port4",
+                              "name": "ethernet1/1/4",
+                              "port_type": "ETHERNET",
+                              "link_type": "EDGELINK"
+                         }
+                    ]
+               }
+          ],
+          "connections": [
+
+               {
+                    "id": "link-2",
+                    "name": "s1-Port1/1/1-l1-Port1/1/1",
+                    "port1_id": "s1-Port1",
+                    "port2_id": "l1-Port1"
+               },
+               {
+                    "id": "link-3",
+                    "name": "s1-Port1/1/2-l2-Port1/1/1",
+                    "port1_id": "s1-Port2",
+                    "port2_id": "l2-Port1"
+               },
+               {
+                    "id": "link-4",
+                    "name": "s1-Port1/1/3-l3-Port1/1/1",
+                    "port1_id": "s1-Port3",
+                    "port2_id": "l3-Port1"
+               },
+               {
+                    "id": "link-5",
+                    "name": "s1-Port1/1/4-l4-Port1/1/1",
+                    "port1_id": "s1-Port4",
+                    "port2_id": "l4-Port1"
+               },
+               {
+                    "id": "link-6",
+                    "name": "s1-Port1/1/5-l5-Port1/1/1",
+                    "port1_id": "s1-Port5",
+                    "port2_id": "l5-Port1"
+               },
+               {
+                    "id": "link-7",
+                    "name": "s1-Port1/1/6-l6-Port1/1/1",
+                    "port1_id": "s1-Port6",
+                    "port2_id": "l6-Port1"
+               },
+
+               {
+                    "id": "link-9",
+                    "name": "s2-Port1/1/1-l1-Port1/1/2",
+                    "port1_id": "s2-Port1",
+                    "port2_id": "l1-Port2"
+               },
+               {
+                    "id": "link-10",
+                    "name": "s2-Port1/1/2-l2-Port1/1/2",
+                    "port1_id": "s2-Port2",
+                    "port2_id": "l2-Port2"
+               },
+               {
+                    "id": "link-11",
+                    "name": "s2-Port1/1/3-l3-Port1/1/2",
+                    "port1_id": "s2-Port3",
+                    "port2_id": "l3-Port2"
+               },
+               {
+                    "id": "link-12",
+                    "name": "s2-Port1/1/4-l4-Port1/1/2",
+                    "port1_id": "s2-Port4",
+                    "port2_id": "l4-Port2"
+               },
+               {
+                    "id": "link-13",
+                    "name": "s2-Port1/1/5-l5-Port1/1/2",
+                    "port1_id": "s2-Port5",
+                    "port2_id": "l5-Port2"
+               },
+               {
+                    "id": "link-14",
+                    "name": "s2-Port1/1/6-l6-Port1/1/2",
+                    "port1_id": "s2-Port6",
+                    "port2_id": "l6-Port2"
+               },
+
+               {
+                    "id": "link-17",
+                    "name": "l1-Port1/1/3-l2-Port1/1/3",
+                    "port1_id": "l1-Port3",
+                    "port2_id": "l2-Port3"
+               },
+               {
+                    "id": "link-18",
+                    "name": "l3-Port1/1/3-l4-Port1/1/3",
+                    "port1_id": "l3-Port3",
+                    "port2_id": "l4-Port3"
+               },
+               {
+                    "id": "link-19",
+                    "name": "l5-Port1/1/3-l6-Port1/1/3",
+                    "port1_id": "l5-Port3",
+                    "port2_id": "l6-Port3"
+               },
+               {
+                    "id": "link-20",
+                    "name": "l1-Port1/1/9-l2-Port1/1/9",
+                    "port1_id": "l1-Port9",
+                    "port2_id": "l2-Port9"
+               },
+               {
+                    "id": "link-21",
+                    "name": "l3-Port1/1/9-l4-Port1/1/9",
+                    "port1_id": "l3-Port9",
+                    "port2_id": "l4-Port9"
+               },
+               {
+                    "id": "link-22",
+                    "name": "s1-Port1/1/8-l1-Port1/1/8",
+                    "port1_id": "s1-Port8",
+                    "port2_id": "l1-Port8"
+               },
+               {
+                    "id": "link-23",
+                    "name": "s1-Port1/1/9-l3-Port1/1/8",
+                    "port1_id": "s1-Port9",
+                    "port2_id": "l3-Port8"
+               },
+               {
+                    "id": "link-24",
+                    "name": "s2-Port1/1/8-l3-Port1/1/8",
+                    "port1_id": "s2-Port8",
+                    "port2_id": "l2-Port8"
+               },
+               {
+                    "id": "link-25",
+                    "name": "s2-Port1/1/9-l4-Port1/1/8",
+                    "port1_id": "s2-Port9",
+                    "port2_id": "l4-Port8"
+               }
+
+
+          ]
+     }
+}
