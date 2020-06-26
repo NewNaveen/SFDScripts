@@ -17,8 +17,8 @@ class GetSwitchDetails:
         spine_ip = []
         with open('setup1.json', 'r') as f:
             json_text = f.read()
-            setup1 = json.loads(json_text)
-            for value in setup1['topology']['nodes']:
+            setup = json.loads(json_text)
+            for value in setup['topology']['nodes']:
                 if value['role'] == 'SPINE':
                     spine_ip.append(value['mgmt_ip_address'])
             return spine_ip
@@ -40,11 +40,26 @@ class GetSwitchDetails:
         credentials = {}
         with open('setup1.json', 'r') as f:
             json_text = f.read()
-            setup1 = json.loads(json_text)
-            for value in setup1['topology']['nodes']:
+            setup = json.loads(json_text)
+            for value in setup['topology']['nodes']:
                 if value['role'] == 'SPINE':
                     credentials.update({value['mgmt_ip_address'] : value['credential']})
             return credentials
+
+    def get_spine_swithnames(self):
+        """
+        This function gives the Spine switch names from the input JSON file
+        :return:
+        """
+        switchnames = {}
+        with open('setup1.json', 'r') as f:
+            json_text = f.read()
+            setup = json.loads(json_text)
+            for value in setup['topology']['nodes']:
+                if value['role'] == "SPINE":
+                    switchnames.update({value['mgmt_ip_address'] : value['name']})
+            return switchnames
+
 
     def get_leaf_switch_ip(self):
         """
@@ -54,8 +69,8 @@ class GetSwitchDetails:
         leaf_ip = []
         with open('setup1.json', 'r') as f:
             json_text = f.read()
-            setup1 = json.loads(json_text)
-            for value in setup1['topology']['nodes']:
+            setup = json.loads(json_text)
+            for value in setup['topology']['nodes']:
                 if value['role'] == 'LEAF':
                     leaf_ip.append(value['mgmt_ip_address'])
             return leaf_ip
@@ -77,11 +92,25 @@ class GetSwitchDetails:
         credentials = {}
         with open('setup1.json', 'r') as f:
             json_text = f.read()
-            setup1 = json.loads(json_text)
-            for value in setup1['topology']['nodes']:
+            setup = json.loads(json_text)
+            for value in setup['topology']['nodes']:
                 if value['role'] == 'LEAF':
                     credentials.update({value['mgmt_ip_address'] : value['credential']})
             return credentials
+
+    def get_leaf_swithnames(self):
+        """
+        This function gives the Leaf switch names from the input JSON file
+        :return:
+        """
+        switchnames = {}
+        with open('setup1.json', 'r') as f:
+            json_text = f.read()
+            setup = json.loads(json_text)
+            for value in setup['topology']['nodes']:
+                if value['role'] == "LEAF":
+                    switchnames.update({value['mgmt_ip_address'] : value['name']})
+            return switchnames
 
     def get_edgeleaf_switch_ip(self):
         """
@@ -91,8 +120,8 @@ class GetSwitchDetails:
         edgeleaf_ip = []
         with open('setup1.json', 'r') as f:
             json_text = f.read()
-            setup1 = json.loads(json_text)
-            for value in setup1['topology']['nodes']:
+            setup = json.loads(json_text)
+            for value in setup['topology']['nodes']:
                 if value['role'] == 'EDGE_LEAF':
                     edgeleaf_ip.append(value['mgmt_ip_address'])
             return edgeleaf_ip
@@ -114,19 +143,31 @@ class GetSwitchDetails:
         credentials = {}
         with open('setup1.json', 'r') as f:
             json_text = f.read()
-            setup1 = json.loads(json_text)
-            for value in setup1['topology']['nodes']:
+            setup = json.loads(json_text)
+            for value in setup['topology']['nodes']:
                 if value['role'] == 'EDGE_LEAF':
                     credentials.update({value['mgmt_ip_address'] : value['credential']})
             return credentials
 
+    def get_edgeleaf_swithnames(self):
+        """
+        This function gives the Edge Leaf switch names from the input JSON file
+        :return:
+        """
+        switchnames = {}
+        with open('setup1.json', 'r') as f:
+            json_text = f.read()
+            setup = json.loads(json_text)
+            for value in setup['topology']['nodes']:
+                if value['role'] == "EDGE_LEAF":
+                    switchnames.update({value['mgmt_ip_address'] : value['name']})
+            return switchnames
 
-"""
+
+
+
 if __name__ == '__main__':
     x = GetSwitchDetails()
-    print(x.spine_switch_count())
-    print(x.leaf_switch_count())
-    print(x.edgeleaf_switch_count())
-    print(x.get_edgeleaf_switch_ip())
-    print(x.get_edgeleaf_credentials())
-"""
+    print(x.get_spine_swithnames())
+    print(x.get_leaf_swithnames())
+    print(x.get_edgeleaf_swithnames())

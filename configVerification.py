@@ -1,4 +1,4 @@
-import paramiko
+
 import logging
 import time
 import re
@@ -9,7 +9,11 @@ from SFDScripts.switchDetails import GetSwitchDetails
 
 class VerifyDeployedConfig:
     logger = logging.getLogger()
-    logging.basicConfig(level=logging.INFO)
+    logging.basicConfig(filename='configverify.txt',
+                        filemode='w+',
+                        datefmt='%H:%M:%S',
+                        format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
+                        level=logging.INFO)
     logging.getLogger("paramiko").setLevel(logging.INFO)
 
     def spineBgpConfig(self):
@@ -21,11 +25,12 @@ class VerifyDeployedConfig:
         for ipaddress in GetSwitchDetails().get_spine_switch_ip():
             for value in GetSwitchDetails().get_spine_credentials():
                 if value == ipaddress:
+                    hostname = GetSwitchDetails().get_spine_swithnames()[ipaddress]
                     username = GetSwitchDetails().get_spine_credentials()[ipaddress]['username']
                     password = GetSwitchDetails().get_spine_credentials()[ipaddress]['password']
                     connection = SwitchBasicFunctions().sshToSwitches(ipaddress, username, password)
                     ssh_stdin, ssh_stdout, ssh_stderr = connection.exec_command(cmd)
-                    self.logger.info(f'Executing command = {cmd} on switch = {ipaddress}')
+                    self.logger.info(f'Executing command = {cmd} on switch = {hostname} with ipaddress = {ipaddress}')
                     output = ssh_stdout.read().decode('utf-8')
                     connection.close()
                     regex = re.findall(r'\d*\.\d*\.\d*\.\d*', output)
@@ -33,10 +38,11 @@ class VerifyDeployedConfig:
                     self.logger.info(regex)
                     count = len(regex)
                     if count == VerifyDeployedConfig().countLeafBgpneighbors():
-                        self.logger.info(f'Configured BGP Neighbors on Switch {ipaddress} matches Leaf switch count')
+                        self.logger.info(f'Configured BGP Neighbors on Switch {hostname} ipaddress = {ipaddress} '
+                                         f'matches Leaf switch count')
                     else:
-                        self.logger.info(f'Configured BGP Neighbors on Switch {ipaddress} Does not matches Leaf '
-                                         f'switch count')
+                        self.logger.info(f'Configured BGP Neighbors on Switch {hostname} ipaddress = {ipaddress} '
+                                         f'Does not matches Leaf switch count')
                     self.logger.info(count)
 
     def countLeafBgpneighbors(self):
@@ -60,25 +66,25 @@ class VerifyDeployedConfig:
         for ipaddress in GetSwitchDetails().get_spine_switch_ip():
             for value in GetSwitchDetails().get_spine_credentials():
                 if value == ipaddress:
-                    count = 0
+                    hostname = GetSwitchDetails().get_spine_swithnames()[ipaddress]
                     username = GetSwitchDetails().get_spine_credentials()[ipaddress]['username']
                     password = GetSwitchDetails().get_spine_credentials()[ipaddress]['password']
                     connection = SwitchBasicFunctions().sshToSwitches(ipaddress, username, password)
                     ssh_stdin, ssh_stdout, ssh_stderr = connection.exec_command(cmd)
-                    self.logger.info(f'Executing command = {cmd} on switch = {ipaddress}')
+                    self.logger.info(f'Executing command = {cmd} on switch = {hostname} with ipaddress = {ipaddress}')
                     output = ssh_stdout.read().decode('utf-8')
                     connection.close()
-                    for line in output.splitlines():
-                        if ("Idle" in line) or ("Connect" in line):
-                            count += 1
-                    self.logger.info(f'There are {count} Down neighbors on Spine {ipaddress} switch')
+                    result = [line for line in output.splitlines() if ("Idle" in line) or ("Connect" in line)]
+                    count = len(result)
+                    self.logger.info(f'There are {count} BGP Down neighbors on Spine {hostname} ipaddress = {ipaddress}')
                     upneighbors = VerifyDeployedConfig().countLeafBgpneighbors() - count
-                    self.logger.info(f'There are {upneighbors} BGP up Neighbors on switch {ipaddress}')
+                    self.logger.info(f'There are {upneighbors} BGP up Neighbors on switch {hostname} ipaddress = {ipaddress}')
                     if upneighbors == VerifyDeployedConfig().countLeafBgpneighbors():
-                        self.logger.info(f'BGP Up neighbors on Spine = {ipaddress} matches Leaf switch count')
+                        self.logger.info(f'BGP Up neighbors on Spine = {hostname} ipaddress = {ipaddress} matches '
+                                         f'Leaf switch count')
                     else:
-                        self.logger.info(f'BGP Up neighbors on Spine = {ipaddress} Does not matches Leaf '
-                                         f'switch count')
+                        self.logger.info(f'BGP Up neighbors on Spine = {hostname} ipaddress = {ipaddress} Does not '
+                                         f'matches Leaf switch count')
 
 if __name__ == '__main__':
     x = VerifyDeployedConfig()
