@@ -7,9 +7,9 @@ import logging
 class SwitchBasicFunctions:
 
     logger = logging.getLogger()
-    logging.basicConfig(level=logging.INFO)
+    logging.basicConfig(level=logging.INFO,
+                        format='%(name)s - %(levelname)s - %(message)s')
     logging.getLogger("paramiko").setLevel(logging.INFO)
-
 
     def sshToSwitches(self, ipaddress, username, password, port=22):
         """
@@ -36,6 +36,9 @@ class SwitchBasicFunctions:
 
         except TimeoutError as err:
             self.logger.info(f"switch {ipaddress} is unreachable {err}")
+
+        except Exception as err:
+            self.logger.info(f"Following error occurred on switch {ipaddress}: {err}")
 
 
 

@@ -14,13 +14,11 @@ class GetSwitchDetails:
         This function gets the spine switch ip address details from the Json file and store them in a list.
         :return:
         """
-        spine_ip = []
         with open('setup1.json', 'r') as f:
             json_text = f.read()
             setup = json.loads(json_text)
-            for value in setup['topology']['nodes']:
-                if value['role'] == 'SPINE':
-                    spine_ip.append(value['mgmt_ip_address'])
+            spine_ip = [value['mgmt_ip_address'] for value in setup['topology']['nodes']
+                        if value['role'] == 'SPINE']
             return spine_ip
 
     def spine_switch_count(self):
@@ -66,13 +64,10 @@ class GetSwitchDetails:
         This function gets the Leaf switch ip address details from the Json file and store them in a list.
         :return:
         """
-        leaf_ip = []
         with open('setup1.json', 'r') as f:
             json_text = f.read()
             setup = json.loads(json_text)
-            for value in setup['topology']['nodes']:
-                if value['role'] == 'LEAF':
-                    leaf_ip.append(value['mgmt_ip_address'])
+            leaf_ip = [value['mgmt_ip_address'] for value in setup['topology']['nodes'] if value['role'] == 'LEAF']
             return leaf_ip
 
     def leaf_switch_count(self):
@@ -117,13 +112,11 @@ class GetSwitchDetails:
         This function gets the Edge Leaf switch ip address details from the Json file and store them in a list.
         :return:
         """
-        edgeleaf_ip = []
         with open('setup1.json', 'r') as f:
             json_text = f.read()
             setup = json.loads(json_text)
-            for value in setup['topology']['nodes']:
-                if value['role'] == 'EDGE_LEAF':
-                    edgeleaf_ip.append(value['mgmt_ip_address'])
+            edgeleaf_ip = [value['mgmt_ip_address'] for value in setup['topology']['nodes']
+                           if value['role'] == 'EDGE_LEAF']
             return edgeleaf_ip
 
     def edgeleaf_switch_count(self):
@@ -165,9 +158,10 @@ class GetSwitchDetails:
 
 
 
-
+"""
 if __name__ == '__main__':
     x = GetSwitchDetails()
-    print(x.get_spine_swithnames())
-    print(x.get_leaf_swithnames())
-    print(x.get_edgeleaf_swithnames())
+    print(x.get_spine_switch_ip())
+    print(x.get_leaf_switch_ip())
+    print(x.get_edgeleaf_switch_ip())
+"""

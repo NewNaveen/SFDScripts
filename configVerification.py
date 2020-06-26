@@ -8,13 +8,11 @@ from SFDScripts.switchDetails import GetSwitchDetails
 
 
 class VerifyDeployedConfig:
-    logger = logging.getLogger()
-    logging.basicConfig(filename='configverify.txt',
-                        filemode='w+',
-                        datefmt='%H:%M:%S',
-                        format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
-                        level=logging.INFO)
-    logging.getLogger("paramiko").setLevel(logging.INFO)
+
+    logger = logging.getLogger("naveen")
+    logging.basicConfig(level=logging.INFO,
+                        format='%(name)s - %(levelname)s - %(message)s')
+
 
     def spineBgpConfig(self):
         """
