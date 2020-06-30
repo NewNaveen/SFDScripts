@@ -7,7 +7,7 @@ from SFDScripts.switchUtils import SwitchBasicFunctions
 from SFDScripts.switchDetails import GetSwitchDetails
 
 
-class VerifyDeployedConfig:
+class VerifyBGPConfig:
 
     logger = logging.getLogger("naveen")
     logging.basicConfig(level=logging.INFO,
@@ -35,7 +35,7 @@ class VerifyDeployedConfig:
                     del regex[0]
                     self.logger.info(regex)
                     count = len(regex)
-                    if count == VerifyDeployedConfig().countLeafBgpneighbors():
+                    if count == VerifyBGPConfig().countLeafBgpneighbors():
                         self.logger.info(f'Configured BGP Neighbors on Switch {hostname} ipaddress = {ipaddress} '
                                          f'matches Leaf switch count')
                     else:
@@ -75,9 +75,9 @@ class VerifyDeployedConfig:
                     result = [line for line in output.splitlines() if ("Idle" in line) or ("Connect" in line)]
                     count = len(result)
                     self.logger.info(f'There are {count} BGP Down neighbors on Spine {hostname} ipaddress = {ipaddress}')
-                    upneighbors = VerifyDeployedConfig().countLeafBgpneighbors() - count
+                    upneighbors = VerifyBGPConfig().countLeafBgpneighbors() - count
                     self.logger.info(f'There are {upneighbors} BGP up Neighbors on switch {hostname} ipaddress = {ipaddress}')
-                    if upneighbors == VerifyDeployedConfig().countLeafBgpneighbors():
+                    if upneighbors == VerifyBGPConfig().countLeafBgpneighbors():
                         self.logger.info(f'BGP Up neighbors on Spine = {hostname} ipaddress = {ipaddress} matches '
                                          f'Leaf switch count')
                     else:
@@ -85,5 +85,5 @@ class VerifyDeployedConfig:
                                          f'matches Leaf switch count')
 
 if __name__ == '__main__':
-    x = VerifyDeployedConfig()
+    x = VerifyBGPConfig()
     x.SpineuPBgpNeighbors()

@@ -156,8 +156,13 @@ class GetSwitchDetails:
                     switchnames.update({value['mgmt_ip_address'] : value['name']})
             return switchnames
 
-
-
+    def total_leaf_switches(self):
+        """
+        This function calculates the total number of leaf switches in the topology including Edge leaf switches.
+        :return:
+        """
+        total = GetSwitchDetails().leaf_switch_count() + GetSwitchDetails().edgeleaf_switch_count()
+        return total
 """
 if __name__ == '__main__':
     x = GetSwitchDetails()
