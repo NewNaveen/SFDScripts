@@ -65,7 +65,6 @@ class SpinePoVerification:
                     output = ssh_stdout.read().decode('utf-8')
                     connection.close()
 
-                    self.logger.info(f'Command Execution is completed on switch = {hostname}')
                     configuredportchannels = SpinePoVerification().configuredPortChannels(output)
                     self.logger.info(f'Configured port-channels on spine = {hostname} are '
                                      f'count = {configuredportchannels}')
