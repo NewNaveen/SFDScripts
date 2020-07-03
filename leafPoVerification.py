@@ -37,15 +37,16 @@ class LeafPoVerification:
         :param output:
         :return:
         """
-
-        pc = ['port-channel1', 'port-channel2', 'port-channel3', 'port-channel4']
+        regex = re.compile(r'port-channel[1-4]{1}')
+        pc = regex.findall(output)
+        pc.pop(len(pc) - 1)
         # Matching the port-channels with the strings in the list. It is matching port-channel1000 also.
         result = [x for x in output.splitlines() for y in pc if y in x]
+        res = [x for x in result if "1000" not in x]
         # Getting only UP port-channels from result
-        regex = re.compile(r'\(U\)')
-        up_port_channels = [z for z in result if re.findall(regex, z)]
-        # Subtracting 1 from the result, to eliminate po1000 from the count
-        return len(up_port_channels) - 1
+        regex1 = re.compile(r'\(U\)')
+        up_port_channels = [z for z in res if re.findall(regex1, z)]
+        return len(up_port_channels)
 
     def configuredHostPortChannels(self, output):
         """
@@ -55,10 +56,27 @@ class LeafPoVerification:
         :return:
         """
 
-        regex = re.compile(r'port-channel[6][5-9]{1} | port-channel[7][0-9]{1}')
+        regex = re.compile(r'port-channel[6][5-9]{1}|port-channel[7][0-9]{1}')
         result = regex.findall(output)
         self.logger.info(f'Configured Host port-channels are {result}')
         return len(result)
+
+    def hostUpPortChannels(self, output):
+        """
+        This function is going to find number of Host port-channels which are in UP state on each switch and returning
+        the output
+        :param output:
+        :return:
+        """
+
+        regex = re.compile(r'port-channel[6][5-9]{1}|port-channel[7][0-9]{1}')
+        pc = regex.findall(output)
+        # Matching the port-channels with the strings in the list. It is matching port-channel1000 also.
+        result = [x for x in output.splitlines() for y in pc if y in x]
+        # Getting only UP port-channels from result
+        regex1 = re.compile(r'\(U\)')
+        up_port_channels = [z for z in result if re.findall(regex1, z)]
+        return len(up_port_channels)
 
     def verifyLeafPortChannels(self):
         """
@@ -106,7 +124,11 @@ class LeafPoVerification:
 
                     # Below piece of code verifies the Configured host-port channels on switch
                     host_portchannels = LeafPoVerification().configuredHostPortChannels(output)
-                    self.logger.info(f'number of Host port-channels on switch = {hostname} is {host_portchannels}')
+                    self.logger.info(f'Configured Host port-channels on switch = {hostname} is {host_portchannels}')
+
+                    # Below piece of code verifies the UP host-port channels on each Leaf switch
+                    host_up_portchannels = LeafPoVerification().hostUpPortChannels(output)
+                    self.logger.info(f'number of UP Host port-channels on switch = {hostname} is {host_up_portchannels}')
 
 
 x = LeafPoVerification()
