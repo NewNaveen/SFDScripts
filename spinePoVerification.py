@@ -19,12 +19,13 @@ class SpinePoVerification:
         :return:
         """
 
-        regex = re.compile(r'port-channel[1-60]')
+        regex = re.compile(r'port-channel[1-9] | port-channel[1-5][0-9]{0,1} | port-channel[6][0-4]{1}')
         """
         The Above regex matches the string starts with port-channel and any number between 1 & 60 and stores the output 
         in a list.
         """
         result = regex.findall(output, re.MULTILINE)
+        self.logger.info(f'configured port-channels are {result}')
         count = len(result)
         return count
 

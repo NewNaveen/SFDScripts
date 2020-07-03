@@ -19,12 +19,14 @@ class LeafPoVerification:
         :return:
         """
 
-        regex = re.compile(r'port-channel[1-10]')
+        regex = re.compile(r'port-channel[1-4]{1}')
         """
         The Above regex matches the string starts with port-channel and any number between 1 & 60 and stores the output 
         in a list.
         """
-        result = regex.findall(output, re.MULTILINE)
+        result = regex.findall(output)
+        result.pop(len(result) - 1)
+        self.logger.info(f'Configured Spine port channels are {result}')
         count = len(result)
         return count
 
@@ -45,7 +47,18 @@ class LeafPoVerification:
         # Subtracting 1 from the result, to eliminate po1000 from the count
         return len(up_port_channels) - 1
 
+    def configuredHostPortChannels(self, output):
+        """
+        By using regular expression we are going to count the number of Host port-channels on each Leaf
+        switch and returning the output
+        :param output:
+        :return:
+        """
 
+        regex = re.compile(r'port-channel[6][5-9]{1} | port-channel[7][0-9]{1}')
+        result = regex.findall(output)
+        self.logger.info(f'Configured Host port-channels are {result}')
+        return len(result)
 
     def verifyLeafPortChannels(self):
         """
@@ -67,6 +80,7 @@ class LeafPoVerification:
                     output = ssh_stdout.read().decode('utf-8')
                     connection.close()
 
+                    # Below piece of code verifies the configured port-channels towards spine switches
                     Spine_portchannels = LeafPoVerification().configuredSpinePortChannels(output)
                     self.logger.info(f'Configured Interlink port-channels on leaf = {hostname} are '
                                      f'count = {Spine_portchannels}')
@@ -78,6 +92,7 @@ class LeafPoVerification:
                         self.logger.info(f'Configured Interlink port-channels on leaf = {hostname} are not equal '
                                          f'to total no.of spine switches {GetSwitchDetails().spine_switch_count()} ')
 
+                    # Below piece of code verifies the UP port-channels towards spine switches
                     spine_up_portchannels = LeafPoVerification().spineUpPortChannels(output)
                     self.logger.info(f'number of UP Interlink port-channels on switch = {hostname} is {spine_up_portchannels}')
 
@@ -88,6 +103,10 @@ class LeafPoVerification:
                         self.logger.info(f'number of UP Interlink  port-channels on switch = {hostname} '
                                          f'are not equal to total no.of Spines {GetSwitchDetails().spine_switch_count()}')
                     self.logger.info(f'closing connection to switch = {hostname}')
+
+                    # Below piece of code verifies the Configured host-port channels on switch
+                    host_portchannels = LeafPoVerification().configuredHostPortChannels(output)
+                    self.logger.info(f'number of Host port-channels on switch = {hostname} is {host_portchannels}')
 
 
 x = LeafPoVerification()
