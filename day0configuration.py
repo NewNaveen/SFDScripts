@@ -22,7 +22,7 @@ class SwitchConfiguration:
     logging.getLogger("paramiko").setLevel(logging.INFO)
 
 
-    commands = ['configure terminal\n', 'logging server 10.173.225.211 severity log-debug\n', 'logging enable\n',
+    commands = ['configure terminal\n', 'logging server 10.173.225.213 severity log-debug\n', 'logging enable\n',
                 'ntp server 10.172.40.1\n', 'ntp server 10.172.40.2\n', 'clock timezone standard-timezone GMT0\n']
     """
     def test(self):
@@ -38,7 +38,7 @@ class SwitchConfiguration:
                     password = GetSwitchDetails().get_spine_credentials()[ipaddress]['password']
                     self.logger.info(f"Running commands on the switch = {ipaddress} ")
                     connection = SwitchBasicFunctions().sshToSwitches(ipaddress, username, password)
-                    connection.invoke_shell()
+                    connection = connection.invoke_shell()
                     for command in self.commands:
                         connection.send(command)
                         time.sleep(2)
@@ -60,7 +60,7 @@ class SwitchConfiguration:
                     password = GetSwitchDetails().get_leaf_credentials()[ipaddress]['password']
                     self.logger.info(f"Running commands on the switch = {ipaddress} ")
                     connection = SwitchBasicFunctions().sshToSwitches(ipaddress, username, password)
-                    connection.invoke_shell()
+                    connection = connection.invoke_shell()
                     for command in self.commands:
                         connection.send(command)
                         time.sleep(2)

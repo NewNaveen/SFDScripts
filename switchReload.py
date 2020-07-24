@@ -1,5 +1,4 @@
 
-import paramiko
 import logging
 import time
 
@@ -59,6 +58,9 @@ class SwitchReload:
                     connection.send("reload\n")
                     time.sleep(2)
 
+                    connection.send("no\n")
+                    time.sleep(2)
+
                     connection.send("yes\n")
                     time.sleep(2)
 
@@ -71,5 +73,5 @@ class SwitchReload:
 
 if __name__ == '__main__':
     x = SwitchReload()
-    #x.spineSwitchReload()
+    x.spineSwitchReload()
     x.leafSwitchReload()

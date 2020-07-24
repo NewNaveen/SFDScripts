@@ -28,8 +28,12 @@ class VerifyBGPConfig:
         # The below regex matches ip address x.x.x.x pattern and gives the output
 
         regex = re.findall(r'\d*\.\d*\.\d*\.\d*', output)
-        del regex[0]
-        count = len(regex)
+
+        if len(regex) > 0:
+            del regex[0]
+            count = len(regex)
+        else:
+            count = len(regex)
         return count
 
     def downbgpneighbors(self, output):
@@ -64,7 +68,7 @@ class VerifyBGPConfig:
 
                     # the below piece of code is to check configured BGP Neighbors
                     bgp_neighbors = VerifyBGPConfig().configuredBGPneighbors(output)
-                    self.logger.info(f'There are {bgp_neighbors} BGP neighbors on the Switch = {hostname}')
+                    self.logger.info(f'There are {bgp_neighbors} BGP neighbors CONFIGURED on the Switch = {hostname}')
                     if bgp_neighbors == VerifyBGPConfig().countLeafBgpneighbors():
                         self.logger.info(f'Configured BGP Neighbors on Switch {hostname} ipaddress = {ipaddress} '
                                          f'matches Leaf switch count')
@@ -73,19 +77,25 @@ class VerifyBGPConfig:
                                          f'Does not matches Leaf switch count')
 
                     # Below piece of code is to verify up bgp neighbors
-                    down_bgp_neighbors = VerifyBGPConfig().downbgpneighbors(output)
-                    self.logger.info(f'There are {down_bgp_neighbors} BGP Down neighbors on Spine {hostname} '
-                                     f'ipaddress = {ipaddress}')
+                    if int(bgp_neighbors) > 0:
 
-                    upneighbors = VerifyBGPConfig().countLeafBgpneighbors() - down_bgp_neighbors
-                    self.logger.info(f'There are {upneighbors} BGP up Neighbors on switch {hostname} '
-                                     f'ipaddress = {ipaddress}')
-                    if upneighbors == VerifyBGPConfig().countLeafBgpneighbors():
-                        self.logger.info(f'BGP Up neighbors on Spine = {hostname} ipaddress = {ipaddress} matches '
-                                         f'Leaf switch count')
+                        down_bgp_neighbors = VerifyBGPConfig().downbgpneighbors(output)
+                        self.logger.info(f'There are {down_bgp_neighbors} BGP Down neighbors on Spine {hostname} '
+                                         f'ipaddress = {ipaddress}')
+
+                        upneighbors = VerifyBGPConfig().countLeafBgpneighbors() - down_bgp_neighbors
+                        self.logger.info(f'There are {upneighbors} BGP up Neighbors on switch {hostname} '
+                                         f'ipaddress = {ipaddress}')
+                        if upneighbors == VerifyBGPConfig().countLeafBgpneighbors():
+                            self.logger.info(f'BGP Up neighbors on Spine = {hostname} ipaddress = {ipaddress} matches '
+                                             f'Leaf switch count')
+                        else:
+                            self.logger.info(f'BGP Up neighbors on Spine = {hostname} ipaddress = {ipaddress} Does not '
+                                             f'matches Leaf switch count')
                     else:
-                        self.logger.info(f'BGP Up neighbors on Spine = {hostname} ipaddress = {ipaddress} Does not '
-                                         f'matches Leaf switch count')
+                        self.logger.info(f'There are no BGP neighbors configured on Spine = {hostname} '
+                                         f'ipaddress = {ipaddress}')
+
 
 
 if __name__ == '__main__':
