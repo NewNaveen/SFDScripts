@@ -1,6 +1,7 @@
 
 import logging
 import time
+import concurrent.futures
 
 from SFDScripts.switchDetails import GetSwitchDetails
 from SFDScripts.switchUtils import SwitchBasicFunctions
@@ -28,6 +29,9 @@ class SwitchReload:
                     connection = connection.invoke_shell()
 
                     connection.send("reload\n")
+                    time.sleep(2)
+
+                    connection.send("no\n")
                     time.sleep(2)
 
                     connection.send("yes\n")

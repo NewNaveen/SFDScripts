@@ -1,38 +1,83 @@
-import paramiko
+
 import logging
 import time
-import re
+import concurrent.futures
 
-from SFDScripts.switchUtils import SwitchBasicFunctions
 from SFDScripts.switchDetails import GetSwitchDetails
+from SFDScripts.switchUtils import SwitchBasicFunctions
 
+spine_ip = GetSwitchDetails().get_spine_switch_ip()
+print(spine_ip)
+leaf_ip = GetSwitchDetails().get_leaf_switch_ip()
+print(leaf_ip)
 
-class Test:
+class SwitchReload:
+
     logger = logging.getLogger()
     logging.basicConfig(level=logging.INFO)
     logging.getLogger("paramiko").setLevel(logging.INFO)
 
-    def SpineuPBgpNeighbors(self):
+    def spineSwitchReload(self, ipaddress):
         """
-        Writing this code to verify the UP BGP neighbors on the spine switch
-
-        We can write the count logic by using the list comprehension also by using the below code
-
-        result = [line for line in output.splitlines() if ("Idle" in line) or ("Connect" in line)]
-        The output is stored in list and assigned to the result variable
-        check the length of result and compare it with the count of Leaf switches.
-
+        This will help is reloading the spine switches. It will get switch details from the Json file
+        in another function.
         :return:
         """
-        cmd = "show ip bgp summary"
-        for ipaddress in GetSwitchDetails().get_spine_switch_ip():
-            for value in GetSwitchDetails().get_spine_credentials():
-                if value == ipaddress:
-                    hostname = GetSwitchDetails().get_spine_swithnames()[ipaddress]
-                    username = GetSwitchDetails().get_spine_credentials()[ipaddress]['username']
-                    password = GetSwitchDetails().get_spine_credentials()[ipaddress]['password']
-                    print(hostname)
+        for value in GetSwitchDetails().get_spine_credentials():
+            if value == ipaddress:
+                username = GetSwitchDetails().get_spine_credentials()[ipaddress]['username']
+                password = GetSwitchDetails().get_spine_credentials()[ipaddress]['password']
+                self.logger.info(f'****** Reloading switch = {ipaddress} ******')
+                connection = SwitchBasicFunctions().sshToSwitches(ipaddress, username, password)
+
+                connection = connection.invoke_shell()
+
+                connection.send("reload\n")
+                time.sleep(2)
+
+                connection.send("no\n")
+                time.sleep(2)
+
+                connection.send("yes\n")
+                time.sleep(2)
+
+                output = connection.recv(65535).decode('utf-8')
+                self.logger.info(output)
+                self.logger.info(f'******* Reloading of switch = {ipaddress} is completed ******')
+                connection.close()
 
 
-x = Test()
-x.SpineuPBgpNeighbors()
+    def leafSwitchReload(self, ipaddress):
+        """
+        This will help is reloading the spine switches. It will get switch details from the Json file
+        in another function.
+        :return:
+        """
+        for value in GetSwitchDetails().get_leaf_credentials():
+            if value == ipaddress:
+                username = GetSwitchDetails().get_leaf_credentials()[ipaddress]['username']
+                password = GetSwitchDetails().get_leaf_credentials()[ipaddress]['password']
+                self.logger.info(f'****** Reloading switch = {ipaddress} ******')
+                connection = SwitchBasicFunctions().sshToSwitches(ipaddress, username, password)
+
+                connection = connection.invoke_shell()
+
+                connection.send("reload\n")
+                time.sleep(2)
+
+                connection.send("no\n")
+                time.sleep(2)
+
+                connection.send("yes\n")
+                time.sleep(2)
+
+                output = connection.recv(65535).decode('utf-8')
+                self.logger.info(output)
+                self.logger.info(f'******* Reloading of switch = {ipaddress} is completed ******')
+                connection.close()
+
+
+if __name__ == '__main__':
+    x = SwitchReload()
+    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as reload:
+        reload.map(x.leafSwitchReload, leaf_ip)

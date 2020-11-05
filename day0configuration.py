@@ -7,7 +7,6 @@ Script will get the switch details and the input from the JSON instead of supply
 Author: Naveen Raju
 """
 
-import paramiko
 import time
 import logging
 
@@ -22,8 +21,10 @@ class SwitchConfiguration:
     logging.getLogger("paramiko").setLevel(logging.INFO)
 
 
-    commands = ['configure terminal\n', 'logging server 10.173.225.213 severity log-debug\n', 'logging enable\n',
-                'ntp server 10.172.40.1\n', 'ntp server 10.172.40.2\n', 'clock timezone standard-timezone GMT0\n']
+    commands = ['configure terminal\n', 'logging server 10.173.225.214 severity log-debug\n', 'logging enable\n',
+                'ntp server 10.172.40.1\n', 'ntp server 10.172.40.2\n', 'clock timezone standard-timezone GMT0\n',
+                'password-attributes lockout-period 0\n']
+
     """
     def test(self):
         for cmd in self.commands:

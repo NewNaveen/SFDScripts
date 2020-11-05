@@ -1,37 +1,36 @@
-import json
+import paramiko
+import datetime
+import time
+import concurrent.futures
 
-switches = {'v-t2-leaf-2': '2:52184604307358850', 'v-t2-leaf-4': '2:52184604308964620',
-            'v-t2-leaf-3': '2:52184604308210887', 'v-t2-leaf-1': '2:52184604306015293'}
 
-with open('apod.json', 'r') as f:
-    json_text = f.read()
+ip_address = ["10.175.18.90", "10.175.18.92", "10.175.18.94",
+              "10.175.18.96", "10.175.18.98", "10.175.18.100",
+              "10.175.18.102", "10.175.18.104"]
 
-new_dict = json.loads(json_text)
-test = new_dict["data"]
-dict1 = {}
-for i in test:
-    for key, value in i.items():
-        if key == 'data':
-            dict1.update({i["vlan_id"]: value})
-print(sorted(dict1.items()))
-dict2 = {}
-for key, value in sorted(dict1.items()):
-    for i in value:
-        for key1 in list(i.keys()):
-            if ('switch_id_1' in key1):
-                dict2.update({key: [i['switch_id_1'], i['switch_id_2']]})
-print(dict2)
+def switch_reload(ipaddress):
+    '''
+    try to  find an exception which handles if we the switch is unresponsive. basically we are able to login to switch
+    and not able to go to CLI mode.
+    '''
+    try:
+        ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        print("***** connecting to {} switch ******".format(ipaddress))
+        ssh.connect(ipaddress, username="admin", password="admin")
+        ssh_stdin, ssh_stdout, ssh_stder = ssh.exec_command('show vlan')
+        output = ssh_stdout.read().decode('utf-8')
+        print(output)
+        print("***** closing ssh connection to {} switch ******\n".format(ipaddress))
+        ssh.close()
 
-"""
-# Decode the JSON string into a Python dictionary.
-apod_dict = json.loads(json_text)
-for key in apod_dict:
-    print(key + "{} {}".format(':', apod_dict[key]))
+    except paramiko.ssh_exception.AuthenticationException as err:
+        print(err)
 
-# Encode the Python dictionary into a JSON string.
-'''
-Without the indent the Json is not printing in legitimate manner
-'''
-new_json_string = json.dumps(apod_dict, indent=4)
-print(new_json_string)
-"""
+    except TimeoutError as err:
+        print("switch {0} unreachable {1}".format(ipaddress, err))
+
+if __name__ == '__main__':
+    # This concurrent features will do the functions of thread start, join and initiating threading process
+    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as e:
+        e.map(switch_reload, ip_address)
