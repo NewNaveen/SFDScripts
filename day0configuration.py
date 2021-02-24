@@ -20,9 +20,14 @@ class SwitchConfiguration:
     logging.basicConfig(level=logging.INFO)
     logging.getLogger("paramiko").setLevel(logging.INFO)
 
-
+    """
     commands = ['configure terminal\n', 'logging server 10.173.225.214 severity log-debug\n', 'logging enable\n',
                 'ntp server 10.172.40.1\n', 'ntp server 10.172.40.2\n', 'clock timezone standard-timezone GMT0\n',
+                'password-attributes lockout-period 0\n']
+    """
+
+    commands = ['configure terminal\n', 'no logging server 10.173.225.211\n',
+                'logging server 10.173.225.214 severity log-debug\n', 'logging enable\n',
                 'password-attributes lockout-period 0\n']
 
     """

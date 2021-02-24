@@ -12,9 +12,9 @@ import paramiko
 
 # below are the data we pre-defined, only modify data at one file
 
-ipaddress = '10.173.225.211'
+ipaddress = '10.173.225.212'
 username = 'admin@sfd.local'
-password = 'VMware1!'
+password = 'Admin!23'
 
 
 def get_health(ipaddress):
@@ -24,7 +24,7 @@ def get_health(ipaddress):
     connection = ssh.invoke_shell()
 
     for i in range(100):
-        connection.send('system health\n')
+        connection.send('system health --full\n')
         time.sleep(5)
 
         output = connection.recv(65535).decode("utf-8")
