@@ -52,7 +52,7 @@ def create_host_network():
     for vxlan in range(10000, 16000, 500):
         data = []
         vlan = int(vxlan / 500)
-        for switch in range(0, 19, 2):
+        for switch in range(8, 15, 2):
             switch1 = switch_id_list[switch]
             switch2 = switch_id_list[switch + 1]
             switch1_name = switch_name_list[switch1]
