@@ -15,7 +15,8 @@ class VerifyBGPConfig:
 
     def countLeafBgpneighbors(self):
 
-        count = GetSwitchDetails().leaf_switch_count() + GetSwitchDetails().edgeleaf_switch_count()
+        # count = GetSwitchDetails().leaf_switch_count() + GetSwitchDetails().edgeleaf_switch_count()
+        count = GetSwitchDetails().leaf_switch_count()
         return count
 
     def configuredBGPneighbors(self, output):

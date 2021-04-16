@@ -25,9 +25,13 @@ class LeafPoVerification:
         in a list.
         """
         result = regex.findall(output)
-        result.pop(len(result) - 1)
-        self.logger.info(f'Configured Spine port channels are {result}')
-        count = len(result)
+        if len(result) > 0:
+            result.pop(len(result) - 1)
+            self.logger.info(f'Configured Spine port channels are {result}')
+            count = len(result)
+        else:
+            self.logger.info(f'Configured Spine port channels are {result}')
+            count = len(result)
         return count
 
     def spineUpPortChannels(self, output):
@@ -39,13 +43,17 @@ class LeafPoVerification:
         """
         regex = re.compile(r'port-channel[1-4]{1}')
         pc = regex.findall(output)
-        pc.pop(len(pc) - 1)
-        # Matching the port-channels with the strings in the list. It is matching port-channel1000 also.
-        result = [x for x in output.splitlines() for y in pc if y in x]
-        res = [x for x in result if "1000" not in x]
-        # Getting only UP port-channels from result
-        regex1 = re.compile(r'\(U\)')
-        up_port_channels = [z for z in res if re.findall(regex1, z)]
+        if len(pc) > 0:
+            pc.pop(len(pc) - 1)
+            # Matching the port-channels with the strings in the list. It is matching port-channel1000 also.
+            result = [x for x in output.splitlines() for y in pc if y in x]
+            res = [x for x in result if "1000" not in x]
+            # Getting only UP port-channels from result
+            regex1 = re.compile(r'\(U\)')
+            up_port_channels = [z for z in res if re.findall(regex1, z)]
+        else:
+            up_port_channels = pc
+
         return len(up_port_channels)
 
     def configuredHostPortChannels(self, output):
@@ -96,6 +104,7 @@ class LeafPoVerification:
                     self.logger.info(f'Executing command = {cmd} on switch = {hostname} with ipaddress = {ipaddress}')
                     ssh_stdin, ssh_stdout, ssh_stderr = connection.exec_command(cmd)
                     output = ssh_stdout.read().decode('utf-8')
+                    self.logger.info(output)
                     connection.close()
 
                     # Below piece of code verifies the configured port-channels towards spine switches

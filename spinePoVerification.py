@@ -64,6 +64,7 @@ class SpinePoVerification:
                     self.logger.info(f'Executing command = {cmd} on switch = {hostname} with ipaddress = {ipaddress}')
                     ssh_stdin, ssh_stdout, ssh_stderr = connection.exec_command(cmd)
                     output = ssh_stdout.read().decode('utf-8')
+                    self.logger.info(output)
                     connection.close()
 
                     configuredportchannels = SpinePoVerification().configuredPortChannels(output)

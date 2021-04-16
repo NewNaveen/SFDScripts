@@ -1,83 +1,61 @@
+"""
+This code will do the day0 configuration on the SFD topology that is being imported.
 
-import logging
+As of now we have to manually copy/put the JSON file into the code folder so that the
+Script will get the switch details and the input from the JSON instead of supplying them manually.
+
+Author: Naveen Raju
+"""
+
 import time
-import concurrent.futures
+import logging
+
 
 from SFDScripts.switchDetails import GetSwitchDetails
 from SFDScripts.switchUtils import SwitchBasicFunctions
 
-spine_ip = GetSwitchDetails().get_spine_switch_ip()
-print(spine_ip)
-leaf_ip = GetSwitchDetails().get_leaf_switch_ip()
-print(leaf_ip)
-
-class SwitchReload:
+class SwitchConfiguration:
 
     logger = logging.getLogger()
     logging.basicConfig(level=logging.INFO)
     logging.getLogger("paramiko").setLevel(logging.INFO)
 
-    def spineSwitchReload(self, ipaddress):
-        """
-        This will help is reloading the spine switches. It will get switch details from the Json file
-        in another function.
-        :return:
-        """
-        for value in GetSwitchDetails().get_spine_credentials():
-            if value == ipaddress:
-                username = GetSwitchDetails().get_spine_credentials()[ipaddress]['username']
-                password = GetSwitchDetails().get_spine_credentials()[ipaddress]['password']
-                self.logger.info(f'****** Reloading switch = {ipaddress} ******')
-                connection = SwitchBasicFunctions().sshToSwitches(ipaddress, username, password)
+    """
+    commands = ['configure terminal\n', 'logging server 10.173.225.214 severity log-debug\n', 'logging enable\n',
+                'ntp server 10.172.40.1\n', 'ntp server 10.172.40.2\n', 'clock timezone standard-timezone GMT0\n',
+                'password-attributes lockout-period 0\n']
+    """
 
-                connection = connection.invoke_shell()
+    leaf_ip = GetSwitchDetails().get_leaf_switch_ip()[2:16]
+    print(leaf_ip)
 
-                connection.send("reload\n")
-                time.sleep(2)
+    def day0_leaf_configuration(self):
+        for ipaddress in SwitchConfiguration.leaf_ip:
+            for value in GetSwitchDetails().get_leaf_credentials():
+                if value == ipaddress:
+                    username = GetSwitchDetails().get_leaf_credentials()[ipaddress]['username']
+                    password = GetSwitchDetails().get_leaf_credentials()[ipaddress]['password']
+                    self.logger.info(f"Running commands on the switch = {ipaddress} ")
+                    connection = SwitchBasicFunctions().sshToSwitches(ipaddress, username, password)
+                    connection = connection.invoke_shell()
+                    time.sleep(2)
 
-                connection.send("no\n")
-                time.sleep(2)
+                    connection.send('system "sudo -i"\n')
+                    time.sleep(2)
 
-                connection.send("yes\n")
-                time.sleep(2)
+                    connection.send('admin\n')
+                    time.sleep(2)
 
-                output = connection.recv(65535).decode('utf-8')
-                self.logger.info(output)
-                self.logger.info(f'******* Reloading of switch = {ipaddress} is completed ******')
-                connection.close()
+                    with open('test.txt', 'r') as f:
+                        for line in f:
+                            connection.send(line+'\n')
+                            time.sleep(2)
+                        f.close()
 
-
-    def leafSwitchReload(self, ipaddress):
-        """
-        This will help is reloading the spine switches. It will get switch details from the Json file
-        in another function.
-        :return:
-        """
-        for value in GetSwitchDetails().get_leaf_credentials():
-            if value == ipaddress:
-                username = GetSwitchDetails().get_leaf_credentials()[ipaddress]['username']
-                password = GetSwitchDetails().get_leaf_credentials()[ipaddress]['password']
-                self.logger.info(f'****** Reloading switch = {ipaddress} ******')
-                connection = SwitchBasicFunctions().sshToSwitches(ipaddress, username, password)
-
-                connection = connection.invoke_shell()
-
-                connection.send("reload\n")
-                time.sleep(2)
-
-                connection.send("no\n")
-                time.sleep(2)
-
-                connection.send("yes\n")
-                time.sleep(2)
-
-                output = connection.recv(65535).decode('utf-8')
-                self.logger.info(output)
-                self.logger.info(f'******* Reloading of switch = {ipaddress} is completed ******')
-                connection.close()
-
+                    connection.close()
+                    self.logger.info(f"***** configuration completed for switch {ipaddress} *****")
 
 if __name__ == '__main__':
-    x = SwitchReload()
-    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as reload:
-        reload.map(x.leafSwitchReload, leaf_ip)
+    x = SwitchConfiguration()
+    x.day0_leaf_configuration()
+
